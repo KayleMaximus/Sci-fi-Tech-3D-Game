@@ -93,10 +93,12 @@ public class Player : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(rayOrignin, out hitInfo))
         {
+            //Create effect for hitting objects
             Debug.Log("Raycast Hit: " + hitInfo.transform.name);
             GameObject hitMarker = Instantiate(_hitMarkerPrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             Destroy(hitMarker, 1f);
 
+            //Make animation for crate
             Destructable crate = hitInfo.transform.GetComponent<Destructable>();
             if(crate != null)
             {
