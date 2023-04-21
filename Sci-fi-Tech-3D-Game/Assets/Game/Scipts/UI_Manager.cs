@@ -18,4 +18,9 @@ public class UI_Manager : MonoBehaviour
     {
         _coin.SetActive(true);
     }
+
+    public void NoteCollectedCoin()
+    {
+        _coin.SetActive(false);
+    }
 }

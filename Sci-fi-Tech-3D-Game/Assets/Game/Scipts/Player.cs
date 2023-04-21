@@ -17,7 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int currentAmmo;
     private int maxAmmo = 50;
-    
+
+    [SerializeField]
+    private GameObject _weapon;
 
     private UI_Manager _uiManager;
 
@@ -35,7 +37,7 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         currentAmmo = maxAmmo;
-        
+
         _uiManager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
     }
 
@@ -94,6 +96,13 @@ public class Player : MonoBehaviour
             Debug.Log("Raycast Hit: " + hitInfo.transform.name);
             GameObject hitMarker = Instantiate(_hitMarkerPrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             Destroy(hitMarker, 1f);
+
+            Destructable crate = hitInfo.transform.GetComponent<Destructable>();
+            if(crate != null)
+            {
+                crate.DestroyCrate();
+            }
+            
         }
     }
 
@@ -119,5 +128,10 @@ public class Player : MonoBehaviour
         _uiManager.UpdateAmmo(currentAmmo);
         _isRealoading = false;
 
+    }
+
+    public void EnableWeapons()
+    {
+        _weapon.SetActive(true);
     }
 }
