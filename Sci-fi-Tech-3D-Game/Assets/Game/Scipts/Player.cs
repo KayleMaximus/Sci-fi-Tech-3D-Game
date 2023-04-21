@@ -111,6 +111,7 @@ public class Player : MonoBehaviour
 
     void CalculateMovement()
     {
+        //Move AWSD + velocity + gravity
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontalInput, 0, verticalInput);
