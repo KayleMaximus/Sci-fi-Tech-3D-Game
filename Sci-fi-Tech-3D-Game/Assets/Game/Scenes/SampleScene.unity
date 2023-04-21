@@ -1512,7 +1512,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Ammo: 50
+  m_Text: 'Ammo: 0
 
 '
 --- !u!222 &1775822267

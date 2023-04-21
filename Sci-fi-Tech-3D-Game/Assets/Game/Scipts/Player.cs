@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private bool _isRealoading = false;
 
     public bool hasCoin = false;
+    public bool _hasWeapon = false;
 
     void Start()
     {
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        currentAmmo = maxAmmo;
+        currentAmmo = 0;
 
         _uiManager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
     }
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Raycasting
-        if (Input.GetMouseButton(0) && currentAmmo > 0) //left click
+        if (Input.GetMouseButton(0) && currentAmmo > 0 ) //left click
         {
             //Enable sound for shooting and animation for muzzleFlash
             Shoot();
@@ -56,7 +57,7 @@ public class Player : MonoBehaviour
         }
 
         //Reaload
-        if (Input.GetKeyDown(KeyCode.R) && _isRealoading == false)
+        if (Input.GetKeyDown(KeyCode.R) && _isRealoading == false && _hasWeapon == true)
         {
             _isRealoading = true;
             StartCoroutine(Reload());
@@ -135,5 +136,8 @@ public class Player : MonoBehaviour
     public void EnableWeapons()
     {
         _weapon.SetActive(true);
+        currentAmmo = maxAmmo;
+        _uiManager.UpdateAmmo(currentAmmo);
+        _hasWeapon = true;
     }
 }
